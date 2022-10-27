@@ -19,6 +19,10 @@ public:
     void PlotInt(int n);
     void Color(int r, int g, int b);
     void Color(int rgb);
+    void ChangeTextScale(int scale);
+    void ChangeTextBackground(int backColor);
+    void ShowText(int x, int y, const char *text, int r, int g, int b, int textScale);
+    void ShowInt(int x, int y, int integer, int r, int g, int b, int textScale);
 };
 
 #endif

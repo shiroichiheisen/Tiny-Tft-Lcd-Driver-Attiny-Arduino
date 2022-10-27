@@ -28,6 +28,11 @@ tiny_driver::tiny_driver(int xSize, int ySize, int orientation, int xOffset, int
     displayBgr_or_Rgb = bgr;
 }
 
+void tiny_driver::ChangeTextScale(int scale)
+{
+    displayTextScale = scale;
+}
+
 const uint8_t CharMap[96][6] PROGMEM = {
     {0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
     {0x00, 0x00, 0x5F, 0x00, 0x00, 0x00},
@@ -445,4 +450,25 @@ void tiny_driver::PlotInt(int n)
             lead = true;
         }
     }
+}
+
+void tiny_driver::ShowText(int x, int y, const char *text, int r, int g, int b, int textScale)
+{
+    MoveTo(x, y);
+    ChangeTextScale(textScale);
+    Color(r, g, b);
+    PlotText(text);
+}
+
+void tiny_driver::ShowInt(int x, int y, int integer, int r, int g, int b, int textScale)
+{
+    MoveTo(x, y);
+    ChangeTextScale(textScale);
+    Color(r, g, b);
+    PlotInt(integer);
+}
+
+void tiny_driver::ChangeTextBackground(int backColor)
+{
+    back = backColor;
 }
