@@ -36,7 +36,7 @@ textScale - The scale of the text on the display
 BGR or RGB - The method of color of the display
 
 
-In this library, you have:
+# In this library, you have:
 
 [InitDisplay](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#InitDisplay)
 
