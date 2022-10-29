@@ -452,23 +452,64 @@ void tiny_driver::PlotInt(int n)
     }
 }
 
-void tiny_driver::ShowText(int x, int y, const char *text, int r, int g, int b, int textScale)
+void tiny_driver::ShowText(int x, int y, const char *text, int textScale)
 {
     MoveTo(x, y);
     ChangeTextScale(textScale);
-    Color(r, g, b);
     PlotText(text);
 }
 
-void tiny_driver::ShowInt(int x, int y, int integer, int r, int g, int b, int textScale)
+void tiny_driver::ShowInt(int x, int y, int integer, int textScale)
 {
     MoveTo(x, y);
     ChangeTextScale(textScale);
-    Color(r, g, b);
     PlotInt(integer);
 }
 
 void tiny_driver::ChangeTextBackground(int backColor)
 {
     back = backColor;
+}
+
+void tiny_driver::ShowImage(const unsigned int *image, int xLocation, int yLocation, int xSize, int ySize)
+{
+    int hexNum = 0;
+    for (int y = yLocation + ySize; y > yLocation; y--)
+    {
+        for (int x = xLocation; x < xLocation + xSize; x++)
+        {
+            int a = image[hexNum];
+            Color(a);
+            PlotPoint(x, y);
+            hexNum++;
+        }
+    }
+}
+
+void tiny_driver::ShowImageCompressed(const unsigned int *image, int xLocation, int yLocation, int xSize, int ySize)
+{
+    int
+        xposition = xLocation,
+        yposition = yLocation,
+        hexNum = 0;
+
+    while (1)
+    {
+        Color(image[hexNum]);
+        for (int i = image[hexNum + 1]; i > 0; i--)
+        {
+            PlotPoint(xposition, yposition);
+            xposition++;
+            if (xposition > xLocation + xSize)
+            {
+                yposition++;
+                xposition = xLocation;
+            }
+            if (yposition > yLocation + ySize)
+                break;
+        }
+        hexNum += 2;
+        if (yposition > yLocation + ySize)
+            break;
+    }
 }

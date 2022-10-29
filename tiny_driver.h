@@ -11,7 +11,7 @@ public:
     void InitDisplay();
     void DisplayOn();
     void ClearDisplay();
-    void MoveTo(int x, int y);
+    void MoveTo(int x = 0, int y = 0);
     void PlotPoint(int x, int y);
     void DrawTo(int x, int y);
     void FillRect(int w, int h);
@@ -21,8 +21,10 @@ public:
     void Color(int rgb);
     void ChangeTextScale(int scale);
     void ChangeTextBackground(int backColor);
-    void ShowText(int x, int y, const char *text, int r, int g, int b, int textScale);
-    void ShowInt(int x, int y, int integer, int r, int g, int b, int textScale);
+    void ShowText(int x, int y, const char *text, int textScale = 1);
+    void ShowInt(int x, int y, int integer, int textScale = 1);
+    void ShowImage(const unsigned int *image, int xLocation, int yLocation, int xSize, int ySize);
+    void ShowImageCompressed(const unsigned int *image, int xLocation, int yLocation, int xSize, int ySize);
 };
 
 #endif
