@@ -18,13 +18,21 @@ tiny_driver DisplayA(int xSize, int ySize, int orientation, int xOffset, int yOf
 ```
 
 xSize - Horizontal Size of the Display
+
 ySize - Vertical Size of the Display
+
 Orientation - Orientation of the Display
+
 xOffset - Offset on the Horizontal plane of the Display
+
 yOffset - Offset on the Vertical plane of the Display
+
 CS - The pin where CS its connected
+
 DC - The pin where DC its connected
+
 textScale - The scale of the text on the display
+
 BGR or RGB - The method of color of the display
 
 
