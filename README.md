@@ -1,6 +1,6 @@
 # Tiny Driver St7735 for attiny's
 
-Library functions with 0,1 and 2-Series attinys, i already tested with them and work flawlessly
+Library works 100% with 0, 1 and 2-Series attinys (already tested on them), on other attinys and atmegas will work too
 
 ## ☕ Using this library
 
