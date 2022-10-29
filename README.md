@@ -32,37 +32,37 @@ BGR or RGB - The method of color of the display
 
 In this library, you have:
 
-[InitDisplay](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#function)
+[InitDisplay](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#InitDisplay)
 
-[DisplayOn](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#function)
+[DisplayOn](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#DisplayOn)
 
-[ClearDisplay ](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#function)
+[ClearDisplay ](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#ClearDisplay)
 
-[MoveTo](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#function)
+[MoveTo](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#MoveToint-xposition-int-yposition)
 
-[PlotPoint](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#function)
+[PlotPoint](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#PlotPointint-xposition-int-yposition)
 
-[DrawTo](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#function)
+[DrawTo](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#DrawToint-xposition-int-yposition)
 
-[FillRect](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#function)
+[FillRect](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#FillRectint-Widht-int-Height)
 
-[PlotText](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#function)
+[PlotText](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#PlotTextconst-char-Text)
 
-[PlotInt](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#function)
+[PlotInt](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#PlotIntint-Number)
 
-[Color](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#function)
+[Color](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#Colorint-RGB565-or-Colorint-r-int-g-int-b)
 
-[ChangeTextScale](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#function)
+[ChangeTextScale](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#ChangeTextScaleint-Scale)
 
-[ChangeTextBackground](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#function)
+[ChangeTextBackground](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#ChangeTextBackgroundint-BackgroundColor)
 
-[Show Text](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#function)
+[Show Text](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#ShowTextint-xPosition-int-yPosition-const-char-Text-int-TextScale)
 
-[Show Int](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#function)
+[Show Int](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#ShowIntint-x-int-y-int-integer-int-textScale)
 
-[Show Image](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#function)
+[Show Image](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#ShowImageconst-unsigned-int-ImageHex-int-xLocation-int-yLocation-int-xSize-int-ySize)
 
-[Show Image Compressed](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#function)
+[Show Image Compressed](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#ShowImageCompressedconst-unsigned-int-ImageHex-int-xLocation-int-yLocation-int-xSize-int-ySize)
 
 ## InitDisplay()
 
@@ -88,17 +88,17 @@ Plot pixel on the designed x and y position.
 
 To use this function, use first the MoveTo to change the cursor to start point and use this function to draw a line from the start point to designed x and y position.
 
-## FillRect(int Widht, int Height);
+## FillRect(int Widht, int Height)
 
 Draw a Rectangle with designed widht and height.
 
 ## PlotText(const char Text)
 
-Draw Text on display
+Draw Text on display.
 
 ## PlotInt(int Number)
 
-Draw an Integer on display
+Draw an Integer on display.
 
 ## Color(int RGB565) or Color(int r, int g, int b)
 
@@ -106,7 +106,7 @@ Change the color, with this you can change the rectangle color, text and lines.
 
 ## ChangeTextScale(int Scale)
 
-Change the size of the text that you will write on the display
+Change the size of the text that you will write on the display.
 
 ## ChangeTextBackground(int BackgroundColor)
 
@@ -124,7 +124,7 @@ Show Integer with more userfriendly function, with the position and scale.
 
 Show converted RGB565 image, to convert just use the folowing link: http://www.rinkydinkelectronics.com/t_imageconverter565.php
 
-After Converted, make and array of the hex from the image and send to this function
+After Converted, make and array of the hex from the image and send to this function:
 
 ```
 const unsigned int voltageIcon[] = { //The array HAVE! to be an unsigned int, because of the max color position! 65535
@@ -139,7 +139,7 @@ const unsigned int voltageIcon[] = { //The array HAVE! to be an unsigned int, be
 
 ## ShowImageCompressed(const unsigned int ImageHex, int xLocation, int yLocation, int xSize, int ySize)
 
-Show converted RGB565 image, to convert just use the folowing link: http://www.rinkydinkelectronics.com/t_imageconverter565.php  and compress it with the compressor i will be sending here, if you want before i post it here, just send me a dm, with the compressor i have sucessfuly turned and 5000 bytes image to only 2000 bytes, the eficiency of the compressor will be better if the image have large bytes of the same color sequencial, because the compressor use the color and the times this color appear on the line of pixels
+Show converted RGB565 image, to convert just use the folowing link: http://www.rinkydinkelectronics.com/t_imageconverter565.php  and compress it with the compressor i will be sending here, if you want before i post it here, just send me a dm, with the compressor i have sucessfuly turned and 5000 bytes image to only 2000 bytes, the eficiency of the compressor will be better if the image have large bytes of the same color sequencial, because the compressor use the color and the times this color appear on the line of pixels.
 
 
 ```
@@ -157,4 +157,4 @@ const unsigned int voltageIcon[] = { //The array HAVE! to be an unsigned int, be
   ShowImage(voltageIcon, 10, 20, 32, 32);  
 ```
 
-Many more updates soon, because right now i will not use until the board arryves to make the final adjustments, if you have some betters ways to make this library more compact, just send a pull request!
+Many more updates soon, because right now i will not use until the board arryves to make the final adjustments, if you have some betters ways to make this library more compact, just send a pull request!.
