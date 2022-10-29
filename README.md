@@ -1,4 +1,4 @@
-# Tiny Driver St7735 for attiny's
+# Tiny Driver St7735
 
 Library works 100% with 0, 1 and 2-Series attinys (already tested on them), on other attinys and atmegas will work too
 
