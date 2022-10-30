@@ -8,6 +8,9 @@
     <label for="imgCode">Image Code:</label>
     <textarea type="text" id="imgCode" name="imgCode" cols="200" rows="20"></textarea><br><br>
     <button type="button" onclick="convAll()">Convert all data!</button><br><br>
+    <label for="colorCode">Color Code to minify:</label>
+    <input type="text" id="colorCode" name="colorCode"></input><br><br>
+    <button type="button" onclick="convOnly()">Convert only the color code!</button><br><br>
     <label for="imgComp">Image With Compression:</label>
     <textarea type="text" id="imgComp" name="imgComp" cols="200" rows="20"></textarea><br><br>
 
@@ -23,6 +26,50 @@
 
     function isWhatPercentOf(numA, numB) {
         return (numA / numB) * 100;
+    }
+
+    function convOnly() {
+
+        var imageData = document.getElementById("imgCode").value;
+        var colorCode = document.getElementById("colorCode").value;
+        imageData = imageData.replace(/ /g, '');
+        imageData = imageData.split(",");
+        for (var i = imageData.length - 1; i > 0; i--) {
+            if (imageData[i].includes('/')) {
+                imageData[i] = imageData[i].substr(imageData[i].length - 6);
+            }
+        }
+
+        imageData.pop();
+
+        var newImageData = "";
+        var Count = 0;
+
+        for (var i = 0; i < imageData.length - 1; i++) {
+            if (imageData[i].includes(colorCode) == false) {
+                newImageData += imageData[i] + ",";
+            } else {
+                try {
+                    while (imageData[i + Count].includes(colorCode)) {
+                        Count++;
+                    }
+                }
+                catch (error) {
+
+                }
+                i += Count - 1;
+                newImageData += colorCode + "," + Count.toString() + ",";
+                Count = 0;
+            }
+        }
+
+        document.getElementById("imgComp").value = newImageData;
+        newImageData = newImageData.split(',');
+        newImageData.pop();
+        document.getElementById("imgDetails").innerHTML = "Last image size: " + imageData.length + " bytes - New image size: " + newImageData.length + " bytes, Reduzing the image in " + (imageData.length - newImageData.length) + " bytes or " + (100 - isWhatPercentOf(newImageData.length, imageData.length)).toFixed(2) + "%";
+        newImageData = [];
+        imageData = [];
+
     }
 
     function convAll() {
@@ -43,6 +90,8 @@
         var Count = 0;
 
         for (var i = 0; i < imageData.length - 1; i++) {
+
+
             var antes = imageData[i + Count];
             try {
                 while (imageData[i + Count].includes(antes)) {
@@ -52,10 +101,12 @@
             catch (error) {
 
             }
-            i += Count;
+
+            i += Count - 1;
             newImageData += antes + "," + Count.toString() + ",";
             Count = 0;
         }
+
 
         document.getElementById("imgComp").value = newImageData;
         newImageData = newImageData.split(',');

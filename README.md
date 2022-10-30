@@ -147,6 +147,8 @@ const unsigned int voltageIcon[] = { //The array HAVE! to be an unsigned int, be
 
 Show converted RGB565 image, to convert just use the folowing link: http://www.rinkydinkelectronics.com/t_imageconverter565.php  and compress it with the compressor: https://shiroichiheisen.github.io/Tiny-Driver-ST7735/, with the compressor i have sucessfuly turned an 5000 bytes image to only 2000 bytes, the eficiency of the compressor will be better if the image have large bytes of the same color sequencial, because the compressor use the color and the times this color appear on the line of pixels.
 
+To use the compressor just paste the image code on the first input, to compress all colors, click on the button "Covert All Data!", I recomend to use the 1 color only compress, because you will have a better eficiency of the compression, just insert the color that repeats the most, on my images I have most 0x0000 color repeating, and click on the button "Convert only the color code!", on the input bellow will be the compressed code and below him will be some text showing how much compression you get.
+
 
 ```
 const unsigned int voltageIcon[] = { //The array HAVE! to be an unsigned int, because of the max color position! 65535
