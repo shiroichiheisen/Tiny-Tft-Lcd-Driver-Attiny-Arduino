@@ -25,6 +25,7 @@ public:
     void ShowInt(int x, int y, int integer, int textScale = 1);
     void ShowImage(const unsigned int *image, int xLocation, int yLocation, int xSize, int ySize);
     void ShowImageCompressed(const unsigned int *image, int xLocation, int yLocation, int xSize, int ySize);
+    void ShowImageCompressedOne(const unsigned int *image, int xLocation, int yLocation, int xSize, int ySize, int ColorCodeCompress);
 };
 
 #endif

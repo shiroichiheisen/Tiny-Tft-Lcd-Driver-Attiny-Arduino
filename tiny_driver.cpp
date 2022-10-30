@@ -494,3 +494,44 @@ void tiny_driver::ShowImageCompressed(const unsigned int *image, int xLocation, 
             break;
     }
 }
+
+void tiny_driver::ShowImageCompressedOne(const unsigned int *image, int xLocation, int yLocation, int xSize, int ySize, int ColorCodeCompress)
+{
+    int
+        xposition = xLocation,
+        yposition = yLocation,
+        hexNum = 0;
+
+    while (1)
+    {
+        Color(image[hexNum]);
+        if (ColorCodeCompress == image[hexNum])
+        {
+            for (int i = image[hexNum + 1]; i > 0; i--)
+            {
+                PlotPoint(xposition, yposition);
+                xposition++;
+                if (xposition > xLocation + xSize)
+                {
+                    yposition++;
+                    xposition = xLocation;
+                }
+                if (yposition > yLocation + ySize)
+                    break;
+            }
+            hexNum += 2;
+        }
+        else
+        {
+            PlotPoint(xposition, yposition);
+            xposition++;
+            if (xposition > xLocation + xSize)
+            {
+                yposition++;
+                xposition = xLocation;
+            }
+        }
+        if (yposition > yLocation + ySize)
+            break;
+    }
+}

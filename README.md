@@ -70,6 +70,9 @@ BGR or RGB - The method of color of the display
 
 [Show Image Compressed](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#ShowImageCompressedconst-unsigned-int-ImageHex-int-xLocation-int-yLocation-int-xSize-int-ySize)
 
+[Show Image Compressed One](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#ShowImageCompressedOneconst-unsigned-int-ImageHex-int-xLocation-int-yLocation-int-xSize-int-ySize-int-ColorCodeCompress)
+
+
 ## InitDisplay()
 
 Iniciates the Display, but remember that this only inicializes.
@@ -164,5 +167,12 @@ const unsigned int voltageIcon[] = { //The array HAVE! to be an unsigned int, be
 
   ShowImage(voltageIcon, 10, 20, 32, 32);  
 ```
+
+## ShowImageCompressedOne(const unsigned int ImageHex, int xLocation, int yLocation, int xSize, int ySize, int ColorCodeCompress)
+
+Show the compressed image but now with only one color compressed 
+
+
+
 
 Many more updates soon, because right now i will not use until the board aryves to make the final adjustments, if you have some betters ways to make this library more compact, just send a pull request!.
