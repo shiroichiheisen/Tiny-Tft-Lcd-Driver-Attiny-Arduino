@@ -13,25 +13,19 @@ int
     displayCs,
     displayDc,
     displayTextScale,
-    displayBgr_or_Rgb;
+    displayBgr_or_Rgb,
 
-tiny_driver::tiny_driver(int xSize, int ySize, int orientation, int xOffset, int yOffset, int cs, int dc, int textScale, int bgr)
-{
-    displayCs = cs;
-    displayDc = dc;
-    displayOrientation = orientation;
-    displayTextScale = textScale;
-    displayXHeight = xSize;
-    displayYHeight = ySize;
-    displayXOffset = xOffset;
-    displayYOffset = yOffset;
-    displayBgr_or_Rgb = bgr;
-}
+    xpos, ypos,
+    fore = 0xFFFF,
+    back = 0;
 
-void tiny_driver::ChangeTextScale(int scale)
-{
-    displayTextScale = scale;
-}
+int const
+    CASET = 0x2A,
+    RASET = 0x2B,
+    RAMWR = 0x2C;
+
+#define uchar unsigned char
+#define uint unsigned int
 
 const uint8_t CharMap[96][6] PROGMEM = {
     {0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
@@ -131,15 +125,24 @@ const uint8_t CharMap[96][6] PROGMEM = {
     {0x00, 0x06, 0x09, 0x06, 0x00, 0x00},
     {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00}};
 
-int const CASET = 0x2A;
-int const RASET = 0x2B;
-int const RAMWR = 0x2C;
+tiny_driver::tiny_driver(int xSize, int ySize, int orientation, int xOffset, int yOffset, int cs, int dc, int textScale, int bgr)
+{
+    displayCs = cs;
+    displayDc = dc;
+    displayOrientation = orientation;
+    displayTextScale = textScale;
+    displayXHeight = xSize;
+    displayYHeight = ySize;
+    displayXOffset = xOffset;
+    displayYOffset = yOffset;
+    displayBgr_or_Rgb = bgr;
+}
 
-int xpos, ypos;
-int fore = 0xFFFF;
-int back = 0;
+void tiny_driver::ChangeTextScale(int scale)
+{
+    displayTextScale = scale;
+}
 
-// Send a byte to the display
 void Data(uint8_t d)
 {
     digitalWrite(displayCs, LOW);
@@ -147,7 +150,6 @@ void Data(uint8_t d)
     digitalWrite(displayCs, HIGH);
 }
 
-// Send a command to the display
 void Command(uint8_t c)
 {
     digitalWrite(displayDc, LOW);
@@ -155,7 +157,6 @@ void Command(uint8_t c)
     digitalWrite(displayDc, HIGH);
 }
 
-// Send a command followed by two data words
 void Command2(uint8_t c, uint16_t d1, uint16_t d2)
 {
     digitalWrite(displayDc, LOW);
@@ -166,9 +167,6 @@ void Command2(uint8_t c, uint16_t d1, uint16_t d2)
     Data(d2 >> 8);
     Data(d2);
 }
-
-#define uchar unsigned char
-#define uint unsigned int
 
 void SPI_WriteData(uchar Data)
 {
@@ -197,43 +195,32 @@ void tiny_driver::InitDisplay()
     pinMode(displayCs, OUTPUT);
     digitalWrite(displayCs, HIGH);
     digitalWrite(displayDc, HIGH); // Data
-
     SPI.begin();
-
     Command(0x01); // Software reset
-
     Lcd_WriteIndex(0xfe);
     Lcd_WriteIndex(0xfe);
     Lcd_WriteIndex(0xfe);
     Lcd_WriteIndex(0xef);
-
     Lcd_WriteIndex(0xb3);
     Lcd_WriteData(0x03);
-
     Lcd_WriteIndex(0x36);
     Lcd_WriteData(0xd8);
-
     Lcd_WriteIndex(0x3a);
     Lcd_WriteData(0x05);
-
     Lcd_WriteIndex(0xb6);
     Lcd_WriteData(0x11);
     Lcd_WriteIndex(0xac);
     Lcd_WriteData(0x0b);
-
     Lcd_WriteIndex(0xb4);
     Lcd_WriteData(0x21);
-
     Lcd_WriteIndex(0xb1);
     Lcd_WriteData(0xc0);
-
     Lcd_WriteIndex(0xe6);
     Lcd_WriteData(0x50);
     Lcd_WriteData(0x43);
     Lcd_WriteIndex(0xe7);
     Lcd_WriteData(0x56);
     Lcd_WriteData(0x43);
-
     Lcd_WriteIndex(0xF0);
     Lcd_WriteData(0x1f);
     Lcd_WriteData(0x41);
@@ -249,9 +236,7 @@ void tiny_driver::InitDisplay()
     Lcd_WriteData(0x15);
     Lcd_WriteData(0x14);
     Lcd_WriteData(0xf);
-
     Lcd_WriteIndex(0xF1);
-
     Lcd_WriteData(0x1f);
     Lcd_WriteData(0x41);
     Lcd_WriteData(0x1B);
@@ -266,10 +251,8 @@ void tiny_driver::InitDisplay()
     Lcd_WriteData(0x15);
     Lcd_WriteData(0x14);
     Lcd_WriteData(0xf);
-
     Lcd_WriteIndex(0xfe);
     Lcd_WriteIndex(0xff);
-
     Lcd_WriteIndex(0x35);
     Lcd_WriteData(0x00);
     Lcd_WriteIndex(0x44);
@@ -277,7 +260,6 @@ void tiny_driver::InitDisplay()
     Lcd_WriteIndex(0x11);
     delay(120);
     Lcd_WriteIndex(0x29);
-
     Lcd_WriteIndex(0x2A); // Set Column Address
     Lcd_WriteData(0x00);
     Lcd_WriteData(0x18);
@@ -289,7 +271,6 @@ void tiny_driver::InitDisplay()
     Lcd_WriteData(0x00);
     Lcd_WriteData(0x9f);
     Lcd_WriteIndex(0x2c);
-
     Command(0x36);
     Data(displayOrientation << 5 | displayBgr_or_Rgb << 3); // Set orientation and rgb/bgr
 }

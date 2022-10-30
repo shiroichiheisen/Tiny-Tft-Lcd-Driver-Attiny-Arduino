@@ -1,0 +1,17 @@
+tiny_driver KEYWORD1
+InitDisplay KEYWORD2
+DisplayOn KEYWORD2
+ClearDisplay KEYWORD2
+MoveTo KEYWORD2
+PlotPoint KEYWORD2
+DrawTo KEYWORD2
+FillRect KEYWORD2
+PlotText KEYWORD2
+PlotInt KEYWORD2
+Color KEYWORD2
+ChangeTextScale KEYWORD2
+ChangeTextBackground KEYWORD2
+ShowText KEYWORD2
+ShowInt KEYWORD2
+ShowImage KEYWORD2
+ShowImageCompressed KEYWORD2
