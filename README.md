@@ -145,7 +145,7 @@ const unsigned int voltageIcon[] = { //The array HAVE! to be an unsigned int, be
 
 ## ShowImageCompressed(const unsigned int ImageHex, int xLocation, int yLocation, int xSize, int ySize)
 
-Show converted RGB565 image, to convert just use the folowing link: http://www.rinkydinkelectronics.com/t_imageconverter565.php  and compress it with the compressor i will be sending here, if you want before i post it here, just send me a dm, with the compressor i have sucessfuly turned and 5000 bytes image to only 2000 bytes, the eficiency of the compressor will be better if the image have large bytes of the same color sequencial, because the compressor use the color and the times this color appear on the line of pixels.
+Show converted RGB565 image, to convert just use the folowing link: http://www.rinkydinkelectronics.com/t_imageconverter565.php  and compress it with the compressor: https://shiroichiheisen.github.io/Tiny-Driver-ST7735/, with the compressor i have sucessfuly turned an 5000 bytes image to only 2000 bytes, the eficiency of the compressor will be better if the image have large bytes of the same color sequencial, because the compressor use the color and the times this color appear on the line of pixels.
 
 
 ```
@@ -163,4 +163,4 @@ const unsigned int voltageIcon[] = { //The array HAVE! to be an unsigned int, be
   ShowImage(voltageIcon, 10, 20, 32, 32);  
 ```
 
-Many more updates soon, because right now i will not use until the board arryves to make the final adjustments, if you have some betters ways to make this library more compact, just send a pull request!.
+Many more updates soon, because right now i will not use until the board aryves to make the final adjustments, if you have some betters ways to make this library more compact, just send a pull request!.
