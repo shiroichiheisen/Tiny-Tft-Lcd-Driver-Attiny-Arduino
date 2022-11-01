@@ -469,69 +469,75 @@ void tiny_driver::ShowImage(const unsigned int *image, int xLocation, int yLocat
 
 void tiny_driver::ShowImageCompressed(const unsigned int *image, int xLocation, int yLocation, int xSize, int ySize)
 {
-    int
+    unsigned short int
         xposition = xLocation,
-        yposition = yLocation,
+        yposition = yLocation + (ySize - 1),
         hexNum = 0;
 
     while (1)
     {
         Color(image[hexNum]);
-        for (int i = image[hexNum + 1]; i > 0; i--)
+        for (unsigned int i = image[hexNum + 1]; i > 0; i--)
         {
             PlotPoint(xposition, yposition);
             xposition++;
-            if (xposition > xLocation + xSize)
+            if (xposition > (xLocation + (xSize - 1)))
             {
-                yposition++;
+                yposition--;
                 xposition = xLocation;
             }
-            if (yposition > yLocation + ySize)
+            if (yposition == yLocation)
                 break;
         }
         hexNum += 2;
-        if (yposition > yLocation + ySize)
+        if (yposition == yLocation)
             break;
     }
 }
 
 void tiny_driver::ShowImageCompressedOne(const unsigned int *image, int xLocation, int yLocation, int xSize, int ySize, int ColorCodeCompress)
 {
-    int
+    unsigned short int
         xposition = xLocation,
-        yposition = yLocation,
+        yposition = yLocation + (ySize - 1),
         hexNum = 0;
 
     while (1)
     {
-        Color(image[hexNum]);
-        if (ColorCodeCompress == image[hexNum])
+        if (image[hexNum] == ColorCodeCompress)
         {
-            for (int i = image[hexNum + 1]; i > 0; i--)
+            Color(image[hexNum]);
+            for (unsigned int i = image[hexNum + 1]; i > 0; i--)
             {
                 PlotPoint(xposition, yposition);
                 xposition++;
-                if (xposition > xLocation + xSize)
+                if (xposition > (xLocation + (xSize - 1)))
                 {
-                    yposition++;
+                    yposition--;
                     xposition = xLocation;
                 }
-                if (yposition > yLocation + ySize)
+                if (yposition == yLocation)
                     break;
             }
             hexNum += 2;
+            if (yposition == yLocation)
+                break;
         }
         else
         {
+            Color(image[hexNum]);
+            int a = image[hexNum];
+            Color(a);
             PlotPoint(xposition, yposition);
+            hexNum++;
             xposition++;
-            if (xposition > xLocation + xSize)
+            if (xposition > (xLocation + (xSize - 1)))
             {
-                yposition++;
+                yposition--;
                 xposition = xLocation;
             }
+            if (yposition == yLocation)
+                break;
         }
-        if (yposition > yLocation + ySize)
-            break;
     }
 }

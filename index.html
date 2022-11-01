@@ -7,10 +7,10 @@
 
     <label for="imgCode">Image Code:</label>
     <textarea type="text" id="imgCode" name="imgCode" cols="200" rows="20"></textarea><br><br>
-    <button type="button" onclick="convAll()">Convert all data!</button><br><br>
     <label for="colorCode">Color Code to minify:</label>
     <input type="text" id="colorCode" name="colorCode"></input><br><br>
     <button type="button" onclick="convOnly()">Convert only the color code!</button><br><br>
+    <button type="button" onclick="convAll()">Convert all data!</button><br><br>
     <label for="imgComp">Image With Compression:</label>
     <textarea type="text" id="imgComp" name="imgComp" cols="200" rows="20"></textarea><br><br>
 
@@ -34,7 +34,7 @@
         var colorCode = document.getElementById("colorCode").value;
         imageData = imageData.replace(/ /g, '');
         imageData = imageData.split(",");
-        for (var i = imageData.length - 1; i > 0; i--) {
+        for (var i = imageData.length - 1; i >= 0; i--) {
             if (imageData[i].includes('/')) {
                 imageData[i] = imageData[i].substr(imageData[i].length - 6);
             }
@@ -63,10 +63,13 @@
             }
         }
 
-        document.getElementById("imgComp").value = newImageData;
+        var dados = "const unsigned int image[] = {" + newImageData + "};";
+        document.getElementById("imgComp").value = dados;
         newImageData = newImageData.split(',');
         newImageData.pop();
-        document.getElementById("imgDetails").innerHTML = "Last image size: " + imageData.length + " bytes - New image size: " + newImageData.length + " bytes, Reduzing the image in " + (imageData.length - newImageData.length) + " bytes or " + (100 - isWhatPercentOf(newImageData.length, imageData.length)).toFixed(2) + "%";
+        document.getElementById("imgDetails").innerHTML = "Last image size: " + (imageData.length * 2) + " bytes - New image size: " +
+            (newImageData.length * 2) + " bytes, Reduzing the image in +-" + ((imageData.length * 2) - (newImageData.length * 2)) + " bytes or " +
+            (100 - isWhatPercentOf(newImageData.length, imageData.length)).toFixed(2) + "%";
         newImageData = [];
         imageData = [];
 
@@ -78,7 +81,7 @@
         var imageData = document.getElementById("imgCode").value;
         imageData = imageData.replace(/ /g, '');
         imageData = imageData.split(",");
-        for (var i = imageData.length - 1; i > 0; i--) {
+        for (var i = imageData.length - 1; i >= 0; i--) {
             if (imageData[i].includes('/')) {
                 imageData[i] = imageData[i].substr(imageData[i].length - 6);
             }
@@ -108,12 +111,13 @@
         }
 
 
-        document.getElementById("imgComp").value = newImageData;
+        var dados = "const unsigned int image[] = {" + newImageData + "};";
+        document.getElementById("imgComp").value = dados;
         newImageData = newImageData.split(',');
         newImageData.pop();
-        var olderL = imageData.length;
-        var newL = newImageData.length;
-        document.getElementById("imgDetails").innerHTML = "Last image size: " + imageData.length + " bytes - New image size: " + newImageData.length + " bytes, Reduzing the image in " + (imageData.length - newImageData.length) + " bytes or " + (100 - isWhatPercentOf(newImageData.length, imageData.length)).toFixed(2) + "%";
+        document.getElementById("imgDetails").innerHTML = "Last image size: " + (imageData.length * 2) + " bytes - New image size: " +
+            (newImageData.length * 2) + " bytes, Reduzing the image in +-" + ((imageData.length * 2) - (newImageData.length * 2)) + " bytes or " +
+            (100 - isWhatPercentOf(newImageData.length, imageData.length)).toFixed(2) + "%";
         newImageData = [];
         imageData = [];
 
