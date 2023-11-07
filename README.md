@@ -10,63 +10,114 @@ To integrate the ST7735 Tiny Driver into your project, follow these steps:
 
 2. Include the library header in your project:
 
-```cpp\n#include \"tiny_driver.h\"\n```
+```cpp
+#include \"tiny_driver.h\"
+```
 
 3. Create an instance of the `tiny_driver` class:
 
-```cpp\ntiny_driver DisplayA(int xSize, int ySize, int orientation, int xOffset, int yOffset, int cs, int dc, int textScale, int bgr)\n```
+```cpp
+tiny_driver DisplayA(int xSize, int ySize, int orientation, int xOffset, int yOffset, int cs, int dc, int textScale, int bgr)
+```
 
-- `xSize`: Display width in pixels\n- `ySize`: Display height in pixels\n- `Orientation`: Display orientation\n- `xOffset`: Horizontal offset on the screen\n- `yOffset`: Vertical offset on the screen\n- `CS`: Chip Select (CS) pin connection\n- `DC`: Data/Command (DC) pin connection\n- `textScale`: Text scaling factor on the screen\n- `BGR` or `RGB`: Color mode of the display
+- `xSize`: Display width in pixels
+- `ySize`: Display height in pixels
+- `Orientation`: Display orientation
+- `xOffset`: Horizontal offset on the screen
+- `yOffset`: Vertical offset on the screen
+- `CS`: Chip Select (CS) pin connection
+- `DC`: Data/Command (DC) pin connection
+- `textScale`: Text scaling factor on the screen
+- `BGR` or `RGB`: Color mode of the display
 
 ## 🛠️ Library Features
 
 Below is a list of available functionalities in the library:
 
-- InitDisplay()\n- DisplayOn()\n- ClearDisplay()\n- MoveTo()\n- PlotPoint()\n- DrawTo()\n- FillRect()\n- PlotText()\n- PlotInt()\n- Color()\n- ChangeTextScale()\n- ChangeTextBackground()\n- ShowText()\n- ShowInt()\n- ShowImage()\n- ShowImageCompressed()\n- ShowImageCompressedOne()
+- InitDisplay()
+- DisplayOn()
+- ClearDisplay()
+- MoveTo()
+- PlotPoint()
+- DrawTo()
+- FillRect()
+- PlotText()
+- PlotInt()
+- Color()
+- ChangeTextScale()
+- ChangeTextBackground()
+- ShowText()
+- ShowInt()
+- ShowImage()
+- ShowImageCompressed()
+- ShowImageCompressedOne()
 
 Detailed descriptions of each method can be found within the library's documentation and source code.
 
 ## 🧩 Library Functions Explained
 
-### InitDisplay()\nInitializes the display. This must be called before any other display operations.
+### InitDisplay()
+Initializes the display. This must be called before any other display operations.
 
-### DisplayOn()\nEnables the display to start showing images.
+### DisplayOn()
+Enables the display to start showing images.
 
-### ClearDisplay()\nClears the entire display.
+### ClearDisplay()
+Clears the entire display.
 
-### MoveTo(int xPosition, int yPosition)\nMoves the cursor to a specific pixel on the screen.
+### MoveTo(int xPosition, int yPosition)
+Moves the cursor to a specific pixel on the screen.
 
-### PlotPoint(int xPosition, int yPosition)\nPlots a pixel at the specified `x` and `y` position.
+### PlotPoint(int xPosition, int yPosition)
+Plots a pixel at the specified `x` and `y` position.
 
-### DrawTo(int xPosition, int yPosition)\nDraws a line from the current cursor position to the specified `x` and `y` position. Use `MoveTo` first to set the start point.
+### DrawTo(int xPosition, int yPosition)
+Draws a line from the current cursor position to the specified `x` and `y` position. Use `MoveTo` first to set the start point.
 
-### FillRect(int Width, int Height)\nDraws a rectangle with the specified width and height.
+### FillRect(int Width, int Height)
+Draws a rectangle with the specified width and height.
 
-### PlotText(const char* Text)\nDisplays text on the screen.
+### PlotText(const char* Text)
+Displays text on the screen.
 
-### PlotInt(int Number)\nDisplays an integer on the screen.
+### PlotInt(int Number)
+Displays an integer on the screen.
 
-### Color(int RGB565)\nSets the current color using the RGB565 format or individual `r`, `g`, and `b` values.
+### Color(int RGB565)
+Sets the current color using the RGB565 format or individual `r`, `g`, and `b` values.
 
-### ChangeTextScale(int Scale)\nChanges the text scaling for display on the screen.
+### ChangeTextScale(int Scale)
+Changes the text scaling for display on the screen.
 
-### ChangeTextBackground(int BackgroundColor)\nSets the background color for text.
+### ChangeTextBackground(int BackgroundColor)
+Sets the background color for text.
 
-### ShowText(int xPosition, int yPosition, const char* Text, int TextScale)\nDisplays text on the screen at the specified position and scale in a user-friendly manner.
+### ShowText(int xPosition, int yPosition, const char* Text, int TextScale)
+Displays text on the screen at the specified position and scale in a user-friendly manner.
 
-### ShowInt(int x, int y, int number, int textScale)\nDisplays an integer on the screen at the specified position and scale in a user-friendly way.
+### ShowInt(int x, int y, int number, int textScale)
+Displays an integer on the screen at the specified position and scale in a user-friendly way.
 
-### ShowImage(const unsigned int ImageHex[], int xLocation, int yLocation, int xSize, int ySize)\nDisplays an RGB565 image converted using the tool provided at: http://www.rinkydinkelectronics.com/t_imageconverter565.php
+### ShowImage(const unsigned int ImageHex[], int xLocation, int yLocation, int xSize, int ySize)
+Displays an RGB565 image converted using the tool provided at: http://www.rinkydinkelectronics.com/t_imageconverter565.php
 
 Example usage:
 
-```cpp\nconst unsigned int voltageIcon[] = {\n    0x0000, // color value\n    0x10A0, // color value\n    // ... more colors\n};
+```cpp
+const unsigned int voltageIcon[] = {
+        0x0000, // color value
+    0x10A0, // color value
+    // ... more colors
+};
 
-DisplayA.ShowImage(voltageIcon, 10, 20, 32, 32);\n```
+DisplayA.ShowImage(voltageIcon, 10, 20, 32, 32);
+```
 
-### ShowImageCompressed(const unsigned int ImageHex[], int xLocation, int yLocation, int xSize, int ySize)\nDisplays a compressed RGB565 image after conversion and compression.
+### ShowImageCompressed(const unsigned int ImageHex[], int xLocation, int yLocation, int xSize, int ySize)
+Displays a compressed RGB565 image after conversion and compression.
 
-### ShowImageCompressedOne(const unsigned int ImageHex[], int xLocation, int yLocation, int xSize, int ySize, int ColorCodeCompress)\nDisplays an image compressed with a single color.
+### ShowImageCompressedOne(const unsigned int ImageHex[], int xLocation, int yLocation, int xSize, int ySize, int ColorCodeCompress)
+Displays an image compressed with a single color.
 
 ## 📝 Final Notes
 
