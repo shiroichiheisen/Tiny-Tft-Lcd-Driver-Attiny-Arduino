@@ -1,130 +1,178 @@
-# Tiny Driver ST7735
+# Tiny Driver St7735
 
-Welcome to the GitHub repository for the ST7735 Tiny Driver Library. This library has been thoroughly tested and is fully compatible with the 0, 1, and 2-Series ATTiny microcontrollers. It's also suitable for use with other ATTiny models and ATMega microcontrollers.
+Library works 100% with 0, 1 and 2-Series attinys (already tested on them), on other attinys and atmegas will work too
 
-## 🚀 Getting Started with the ST7735 Tiny Driver
+## ☕ Using this library
 
-To integrate the ST7735 Tiny Driver into your project, follow these steps:
 
-1. Download and install the library onto your system.
+To use this library, you need to download, install the library, and include the following file in your project:
 
-2. Include the library header in your project:
-
-```cpp
-#include \"tiny_driver.h\"
+```
+#include "tiny_driver.h"
 ```
 
-3. Create an instance of the `tiny_driver` class:
+After that, declare the object:
 
-```cpp
+```
 tiny_driver DisplayA(int xSize, int ySize, int orientation, int xOffset, int yOffset, int cs, int dc, int textScale, int bgr)
 ```
 
-- `xSize`: Display width in pixels
-- `ySize`: Display height in pixels
-- `Orientation`: Display orientation
-- `xOffset`: Horizontal offset on the screen
-- `yOffset`: Vertical offset on the screen
-- `CS`: Chip Select (CS) pin connection
-- `DC`: Data/Command (DC) pin connection
-- `textScale`: Text scaling factor on the screen
-- `BGR` or `RGB`: Color mode of the display
+xSize - Horizontal Size of the Display
 
-## 🛠️ Library Features
+ySize - Vertical Size of the Display
 
-Below is a list of available functionalities in the library:
+Orientation - Orientation of the Display
 
-- InitDisplay()
-- DisplayOn()
-- ClearDisplay()
-- MoveTo()
-- PlotPoint()
-- DrawTo()
-- FillRect()
-- PlotText()
-- PlotInt()
-- Color()
-- ChangeTextScale()
-- ChangeTextBackground()
-- ShowText()
-- ShowInt()
-- ShowImage()
-- ShowImageCompressed()
-- ShowImageCompressedOne()
+xOffset - Offset on the Horizontal plane of the Display
 
-Detailed descriptions of each method can be found within the library's documentation and source code.
+yOffset - Offset on the Vertical plane of the Display
 
-## 🧩 Library Functions Explained
+CS - The pin where CS its connected
 
-### InitDisplay()
-Initializes the display. This must be called before any other display operations.
+DC - The pin where DC its connected
 
-### DisplayOn()
-Enables the display to start showing images.
+textScale - The scale of the text on the display
 
-### ClearDisplay()
-Clears the entire display.
+BGR or RGB - The method of color of the display
 
-### MoveTo(int xPosition, int yPosition)
-Moves the cursor to a specific pixel on the screen.
 
-### PlotPoint(int xPosition, int yPosition)
-Plots a pixel at the specified `x` and `y` position.
+# In this library, you have:
 
-### DrawTo(int xPosition, int yPosition)
-Draws a line from the current cursor position to the specified `x` and `y` position. Use `MoveTo` first to set the start point.
+[InitDisplay](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#InitDisplay)
 
-### FillRect(int Width, int Height)
-Draws a rectangle with the specified width and height.
+[DisplayOn](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#DisplayOn)
 
-### PlotText(const char* Text)
-Displays text on the screen.
+[ClearDisplay ](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#ClearDisplay)
 
-### PlotInt(int Number)
-Displays an integer on the screen.
+[MoveTo](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#MoveToint-xposition-int-yposition)
 
-### Color(int RGB565)
-Sets the current color using the RGB565 format or individual `r`, `g`, and `b` values.
+[PlotPoint](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#PlotPointint-xposition-int-yposition)
 
-### ChangeTextScale(int Scale)
-Changes the text scaling for display on the screen.
+[DrawTo](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#DrawToint-xposition-int-yposition)
 
-### ChangeTextBackground(int BackgroundColor)
-Sets the background color for text.
+[FillRect](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#FillRectint-Widht-int-Height)
 
-### ShowText(int xPosition, int yPosition, const char* Text, int TextScale)
-Displays text on the screen at the specified position and scale in a user-friendly manner.
+[PlotText](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#PlotTextconst-char-Text)
 
-### ShowInt(int x, int y, int number, int textScale)
-Displays an integer on the screen at the specified position and scale in a user-friendly way.
+[PlotInt](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#PlotIntint-Number)
 
-### ShowImage(const unsigned int ImageHex[], int xLocation, int yLocation, int xSize, int ySize)
-Displays an RGB565 image converted using the tool provided at: http://www.rinkydinkelectronics.com/t_imageconverter565.php
+[Color](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#Colorint-RGB565-or-Colorint-r-int-g-int-b)
 
-Example usage:
+[ChangeTextScale](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#ChangeTextScaleint-Scale)
 
-```cpp
-const unsigned int voltageIcon[] = {
-        0x0000, // color value
-    0x10A0, // color value
-    // ... more colors
-};
+[ChangeTextBackground](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#ChangeTextBackgroundint-BackgroundColor)
 
-DisplayA.ShowImage(voltageIcon, 10, 20, 32, 32);
+[Show Text](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#ShowTextint-xPosition-int-yPosition-const-char-Text-int-TextScale)
+
+[Show Int](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#ShowIntint-x-int-y-int-integer-int-textScale)
+
+[Show Image](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#ShowImageconst-unsigned-int-ImageHex-int-xLocation-int-yLocation-int-xSize-int-ySize)
+
+[Show Image Compressed](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#ShowImageCompressedconst-unsigned-int-ImageHex-int-xLocation-int-yLocation-int-xSize-int-ySize)
+
+[Show Image Compressed One](https://github.com/shiroichiheisen/Tiny-Driver-ST7735#ShowImageCompressedOneconst-unsigned-int-ImageHex-int-xLocation-int-yLocation-int-xSize-int-ySize-int-ColorCodeCompress)
+
+
+## InitDisplay()
+
+Iniciates the Display, but remember that this only inicializes.
+
+## DisplayOn()
+
+Enable the display to begin showing images.
+
+## ClearDisplay() 
+
+Clears the display.
+
+## MoveTo(int xposition, int yposition)
+
+Moves the cursor to designed pixel on screen.
+
+## PlotPoint(int xposition, int yposition)
+
+Plot pixel on the designed x and y position.
+
+## DrawTo(int xposition, int yposition)
+
+To use this function, use first the MoveTo to change the cursor to start point and use this function to draw a line from the start point to designed x and y position.
+
+## FillRect(int Widht, int Height)
+
+Draw a Rectangle with designed widht and height.
+
+## PlotText(const char Text)
+
+Draw Text on display.
+
+## PlotInt(int Number)
+
+Draw an Integer on display.
+
+## Color(int RGB565) or Color(int r, int g, int b)
+
+Change the color, with this you can change the rectangle color, text and lines.
+
+## ChangeTextScale(int Scale)
+
+Change the size of the text that you will write on the display.
+
+## ChangeTextBackground(int BackgroundColor)
+
+Change the background color of the text.
+
+## ShowText(int xPosition, int yPosition, const char Text, int TextScale)
+
+Show text with more userfriendly function, with the position and scale.
+
+## ShowInt(int x, int y, int integer, int textScale)
+
+Show Integer with more userfriendly function, with the position and scale.
+
+## ShowImage(const unsigned int ImageHex, int xLocation, int yLocation, int xSize, int ySize)
+
+Show converted RGB565 image, to convert just use the folowing link: http://www.rinkydinkelectronics.com/t_imageconverter565.php
+
+After Converted, make and array of the hex from the image and send to this function:
+
+```
+const unsigned int voltageIcon[] = { //The array HAVE! to be an unsigned int, because of the max color position! 65535
+    0x0000,
+    0x10A0,
+    0x4282,
+    0x6384,
+    };
+
+  ShowImage(voltageIcon, 10, 20, 32, 32);  
 ```
 
-### ShowImageCompressed(const unsigned int ImageHex[], int xLocation, int yLocation, int xSize, int ySize)
-Displays a compressed RGB565 image after conversion and compression.
+## ShowImageCompressed(const unsigned int ImageHex, int xLocation, int yLocation, int xSize, int ySize)
 
-### ShowImageCompressedOne(const unsigned int ImageHex[], int xLocation, int yLocation, int xSize, int ySize, int ColorCodeCompress)
-Displays an image compressed with a single color.
+Show converted RGB565 image, to convert just use the folowing link: http://www.rinkydinkelectronics.com/t_imageconverter565.php  and compress it with the compressor: https://shiroichiheisen.github.io/Tiny-Driver-ST7735/, with the compressor i have sucessfuly turned an 5000 bytes image to only 2000 bytes, the eficiency of the compressor will be better if the image have large bytes of the same color sequencial, because the compressor use the color and the times this color appear on the line of pixels.
 
-## 📝 Final Notes
+To use the compressor just paste the image code on the first input, to compress all colors, click on the button "Covert All Data!", I recomend to use the 1 color only compress, because you will have a better eficiency of the compression, just insert the color that repeats the most, on my images I have most 0x0000 color repeating, and click on the button "Convert only the color code!", on the input bellow will be the compressed code and below him will be some text showing how much compression you get.
 
-We're constantly updating and improving the library. If you have suggestions for enhancement or optimization or if you wish to contribute, feel free to submit a pull request!
 
-Stay tuned for more updates and the final adjustments once the new boards arrive. Your feedback is always welcome!
+```
+const unsigned int voltageIcon[] = { //The array HAVE! to be an unsigned int, because of the max color position! 65535
+    0x0000,   //color to send to each pixels
+    18        //how many pixel the color will be sent on the x axys
+    0x10A0,
+    2
+    0x4282,
+    24
+    0x6384,
+    7
+    };
 
----
+  ShowImage(voltageIcon, 10, 20, 32, 32);  
+```
 
-If you have any queries or need support, don't hesitate to open an issue on the GitHub repository.
+## ShowImageCompressedOne(const unsigned int ImageHex, int xLocation, int yLocation, int xSize, int ySize, int ColorCodeCompress)
+
+Show the compressed image but now with only one color compressed 
+
+
+
+
+Many more updates soon, because right now i will not use until the board aryves to make the final adjustments, if you have some betters ways to make this library more compact, just send a pull request!.
