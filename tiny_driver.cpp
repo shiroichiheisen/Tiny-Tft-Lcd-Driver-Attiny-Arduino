@@ -19,7 +19,7 @@ int
     fore = 0xFFFF,
     back = 0;
 
-int const
+uint8_t const
     CASET = 0x2A,
     RASET = 0x2B,
     RAMWR = 0x2C;
