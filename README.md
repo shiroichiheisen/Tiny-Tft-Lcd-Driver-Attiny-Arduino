@@ -8,7 +8,7 @@ Library works 100% with 0, 1 and 2-Series attinys (already tested on them), on o
 To use this library, you need to download, install the library, and include the following file in your project:
 
 ```
-#include "tiny_driver.h"
+#include "tiny_driver.hpp"
 ```
 
 After that, declare the object:
